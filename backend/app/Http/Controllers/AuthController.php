@@ -35,9 +35,14 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
+
         if (auth()->attempt($credentials)) {
             $user = auth()->user();
+            if ($user->status === 'inactive') {
+                return response()->json(['error' => 'Your account is deactivated. Please contact the administrator.'], 403);
+            }
             $token = $user->createToken('Personal Access Token')->accessToken;
+            
 
             return response()->json(['token' => $token], 200);
         }
