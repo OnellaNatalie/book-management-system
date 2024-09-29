@@ -22,12 +22,18 @@ use App\Http\Controllers\AdminController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('/user', [AuthController::class, 'getUser']);
+
+});
 Route::middleware(['auth:api', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
+
   
 });
 
 Route::middleware(['auth:api', 'role:author'])->group(function () {
     Route::get('/author/dashboard', [AuthorController::class, 'index']);
+
     
 });
