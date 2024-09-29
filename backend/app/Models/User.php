@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'status',
     ];
 
     /**
@@ -41,4 +43,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function books()
+    {
+        return $this->hasMany(Book::class, 'user_id'); // 'user_id' is the foreign key in the books table
+    }
 }
