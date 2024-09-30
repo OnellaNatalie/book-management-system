@@ -27,13 +27,14 @@ Route::middleware(['auth:api'])->group(function () {
 
 });
 Route::middleware(['auth:api', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'index']);
-
-  
+    Route::get('/admin/authors', [AdminController::class, 'listAuthors']);
+    Route::patch('/admin/authors/status/{id}', [AdminController::class, 'updateAuthorStatus']);
+    Route::get('/admin/list-books', [AdminController::class, 'listBooks']);
+    Route::get('/admin/authors/books/{authorId}', [AdminController::class, 'listBooksByAuthor']);
 });
 
 Route::middleware(['auth:api', 'role:author'])->group(function () {
-    Route::get('/author/dashboard', [AuthorController::class, 'index']);
-
+    Route::get('/author/list-books', [AuthorController::class, 'listBooks']);
+    Route::post('/author/add-book', [AuthorController::class, 'addBook']);   
     
 });
