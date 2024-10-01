@@ -1,0 +1,18 @@
+<h2>Books</h2>
+
+<input 
+  type="text" 
+  placeholder="Search for books..." 
+  [(ngModel)]="searchTerm"
+/>
+
+<div *ngIf="filteredBooks.length > 0">
+  <div *ngFor="let book of filteredBooks">
+    <h3>{{ book.title }}</h3>
+    <img [src]="'http://127.0.0.1:8000/storage/' + book.cover_image" alt="{{ book.title }}" width="100" />
+    <p>Book ID: {{ book.id }}</p>
+    <p>Author: {{ book.user.name }}</p>
+    <p>Author ID: {{ book.user_id }}</p>
+    <p>Created At: {{ book.created_at | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+  </div>
+</div>
