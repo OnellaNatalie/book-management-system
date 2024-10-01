@@ -58,7 +58,7 @@ This project is a **Book Management System** consisting of a backend API built w
 1. Clone the backend repository:
 
    ```bash
-   git clone https://github.com/your-username/book-management-system-backend.git
+   git clone https://github.com/OnellaNatalie/book-management-system.git
    ```
 
 2. Navigate into the project directory:
@@ -116,7 +116,7 @@ This project is a **Book Management System** consisting of a backend API built w
 1. Clone the frontend repository:
 
    ```bash
-   git clone https://github.com/your-username/book-management-system-frontend.git
+   git clone https://github.com/OnellaNatalie/book-management-system.git
    ```
 
 2. Navigate into the project directory:
