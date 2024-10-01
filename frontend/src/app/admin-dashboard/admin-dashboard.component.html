@@ -1,15 +1,17 @@
 <div class="container mt-4">
-  <h2>Authors</h2>
+
+<h1>Author Dashboard</h1>  <br><br><br>
+  <h3>Authors</h3>
   <ul class="list-group mb-4">
     <li *ngFor="let author of authors" class="list-group-item d-flex justify-content-between align-items-center">
-      {{ author.name }} - Status: {{ author.status }}
+     <b>{{ author.name }}</b>  - Status: {{ author.status }}
       <div>
-        <!-- Show 'Activate' button if the author is inactive -->
+         
         <button *ngIf="author.status === 'inactive'" class="btn btn-success btn-sm" (click)="updateAuthorStatus(author.id, 'active')">
           Activate
         </button>
         
-        <!-- Show 'Deactivate' button if the author is active -->
+         
         <button *ngIf="author.status === 'active'" class="btn btn-danger btn-sm" (click)="updateAuthorStatus(author.id, 'inactive')">
           Deactivate
         </button>
@@ -17,7 +19,7 @@
     </li>
   </ul>
 
-  <h2>Books</h2>
+  <h3>Books</h3>
   <div *ngIf="books && books.length > 0" class="row">
     <div *ngFor="let book of books" class="col-md-4 mb-4">
       <div class="card">
@@ -29,8 +31,8 @@
         <div class="card-body">
           <h5 class="card-title">{{ book.title }}</h5>
           <p class="card-text">Book ID: {{ book.id }}</p>
-          <p class="card-text">Author: {{ book.user.name }}</p> <!-- Displaying author's name -->
-          <p class="card-text">Author ID: {{ book.user_id }}</p> <!-- Displaying author's ID -->
+          <p class="card-text">Author: {{ book.user.name }}</p>  
+          <p class="card-text">Author ID: {{ book.user_id }}</p>  
           <p class="card-text">Created At: {{ book.created_at | date:'dd MMMM yyyy HH:mm:ss' }}</p>
         </div>
       </div>

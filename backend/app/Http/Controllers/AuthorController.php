@@ -18,7 +18,8 @@ class AuthorController extends Controller
     public function listBooks()
     {
         $authorId = Auth::id();
-        $books = Book::where('user_id', $authorId)->get();
+        // $books = Book::where('user_id', $authorId)->get();
+        $books = Book::with('user')->where('user_id', $authorId)->get();
         return response()->json($books);
     }
 

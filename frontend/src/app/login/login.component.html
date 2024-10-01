@@ -21,6 +21,9 @@
       class="form-control"
     />
   </div>
+
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+
   <button type="submit" class="btn btn-primary">Login</button>
 </form>

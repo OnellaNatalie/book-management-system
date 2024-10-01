@@ -21,7 +21,7 @@ class AdminController extends Controller
     }
     public function updateAuthorStatus(Request $request, $id)
     {
-        \Log::info('update user status');
+        // \Log::info('update user status');
 
         $author = User::findOrFail($id);
         $author->status = $request->input('status');

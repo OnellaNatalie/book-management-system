@@ -1,5 +1,7 @@
-<!-- Menu -->
 <div class="container mt-4">
+  <h1>Author Dashboard</h1>  
+
+  <!-- Menu -->
   <ul class="nav nav-pills mb-3">
     <li class="nav-item">
       <a
@@ -18,21 +20,30 @@
       >
     </li>
   </ul>
-
-  <!-- Conditional content based on the selected menu -->
+  
+  
   <div *ngIf="selectedMenu === 'list-books'">
     <h2>Books List</h2>
-    <div *ngFor="let book of books" class="mb-3">
-      <h3>{{ book.title }}</h3>
-      <img
-        style="width: 150px;"
-        *ngIf="book.cover_image"
-        [src]="'http://127.0.0.1:8000/storage/' + book.cover_image"
-        alt="{{ book.title }}"
-        class="img-thumbnail"
-      />
+    <div class="row">
+      <div *ngFor="let book of books" class="col-md-4 mb-3">
+        <div class="card">
+          <img
+            *ngIf="book.cover_image"
+            [src]="'http://127.0.0.1:8000/storage/' + book.cover_image"
+            alt="{{ book.title }}"
+            class="card-img-top"
+            style="height: 200px; object-fit: cover;"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <span>BookId : {{ book.id }}</span><br/>
+            <span>Author : {{ book.user?.name }}</span><br/>
+            <span>Book Added Date : {{ book.created_at | date:'dd MMMM yyyy HH:mm:ss' }}</span>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </div>  
 
   <div *ngIf="selectedMenu === 'add-book'">
     <h2>Add New Book</h2>
@@ -47,17 +58,28 @@
           class="form-control"
         />
       </div>
-
-      <!-- File input for cover image -->
+  
+       
       <div class="mb-3">
+        <label>Cover Image</label>
         <input
           type="file"
           (change)="onFileSelected($event)"
           class="form-control"
         />
       </div>
-
+  
       <button type="submit" class="btn btn-primary">Add Book</button>
     </form>
+  
+    <!-- Success message -->
+    <div *ngIf="successMessage" class="alert alert-success">
+      {{ successMessage }}
+    </div>
+  
+    <!-- Error message -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
   </div>
 </div>

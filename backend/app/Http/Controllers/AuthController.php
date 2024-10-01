@@ -56,17 +56,7 @@ class AuthController extends Controller
         \Log::info('getUser method was called.');
         return response()->json($request->user());
     }
-    public function logout(Request $request)
-    {
-        // Check if the user is authenticated
-        if (Auth::guard('api')->check()) {
-            Auth::guard('api')->user()->token()->revoke();
 
-            return response()->json(['message' => 'User logged out successfully.']);
-        }
-
-        return response()->json(['message' => 'No authenticated user found.'], 401);
-    }
     public function listBooks()
     {
         $books = Book::with('user')

@@ -17,6 +17,8 @@ export class AuthorDashboardComponent implements OnInit {
   newBookTitle: string = '';
   selectedFile: File | null = null; 
   selectedMenu: string = 'list-books';  
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
 
   constructor(private authorService: AuthorService, private router: Router) {}
 
@@ -42,6 +44,8 @@ export class AuthorDashboardComponent implements OnInit {
   addBook(): void {
     if (!this.newBookTitle || !this.selectedFile) {
       // console.error('Book title or image file is missing.');
+      this.errorMessage = 'Book title or Cover image is missing.';
+      this.successMessage = null
       return;
     }
 
@@ -53,10 +57,16 @@ export class AuthorDashboardComponent implements OnInit {
     this.authorService.addBook(formData).subscribe(
       (response) => {
         // console.log('Book added successfully', response);
+        this.successMessage = 'Book added successfully!'; 
+        this.errorMessage = null; 
         this.getBooks();  
+        this.newBookTitle = '';
+        this.selectedFile = null;
       },
       (error) => {
         // console.error('Failed to add book', error);
+        this.errorMessage = 'Failed to add book. Please try again.'; 
+        this.successMessage = null; 
       }
     );
   }

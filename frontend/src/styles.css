@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.nav-link {
+    cursor: pointer; /* Change mouse pointer to hand */
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline; /* Optional: underline on hover */
+    color: #007bff; /* Optional: change text color on hover */
+  }
+  
