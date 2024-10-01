@@ -13,6 +13,6 @@ export const routes: Routes = [
     { path: 'register', component: RegisterComponent }, 
     { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [adminGuard] },
     { path: 'author-dashboard', component: AuthorDashboardComponent,  canActivate: [authorGuard] },
-    // { path: '**', redirectTo: '' } 
+    { path: '**', redirectTo: '' } 
   
 ];
