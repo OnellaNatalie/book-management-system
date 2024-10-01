@@ -1,1 +1,73 @@
-<p>register works!</p>
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <div>
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="name"
+        required
+        minlength="3"
+        #nameInput="ngModel"
+      />
+      <div *ngIf="nameInput.invalid && nameInput.touched">
+        <small *ngIf="nameInput.errors?.['required']">Name is required.</small>
+        <small *ngIf="nameInput.errors?.['minlength']">Name must be at least 3 characters long.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        required
+        email
+        #emailInput="ngModel"
+      />
+      <div *ngIf="emailInput.invalid && emailInput.touched">
+        <small *ngIf="emailInput.errors?.['required']">Email is required.</small>
+        <small *ngIf="emailInput.errors?.['email']">Invalid email format.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        minlength="6"
+        #passwordInput="ngModel"
+      />
+      <div *ngIf="passwordInput.invalid && passwordInput.touched">
+        <small *ngIf="passwordInput.errors?.['required']">Password is required.</small>
+        <small *ngIf="passwordInput.errors?.['minlength']">Password must be at least 6 characters long.</small>
+      </div>
+    </div>
+  
+    <div>
+      <label for="password_confirmation">Confirm Password</label>
+      <input
+        type="password"
+        id="password_confirmation"
+        name="password_confirmation"
+        [(ngModel)]="password_confirmation"
+        required
+        #confirmPasswordInput="ngModel"
+      />
+      <div *ngIf="password !== password_confirmation && confirmPasswordInput.touched">
+        <small>Passwords do not match.</small>
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="registerForm.invalid || password !== password_confirmation">
+      Register
+    </button>
+    <div *ngIf="errorMessage">{{ errorMessage }}</div>
+  </form>
+  
