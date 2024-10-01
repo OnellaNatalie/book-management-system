@@ -1,0 +1,26 @@
+<!-- Menu -->
+<ul>
+    <li (click)="switchMenu('list-books')">List Books</li>
+    <li (click)="switchMenu('add-book')">Add Book</li>
+  </ul>
+  
+  <!-- Conditional content based on the selected menu -->
+  <div *ngIf="selectedMenu === 'list-books'">
+    <div *ngFor="let book of books">
+        <h3>{{ book.title }}</h3>
+        <img style="width: 150px;" *ngIf="book.cover_image" [src]="'http://127.0.0.1:8000/storage/' + book.cover_image" alt="{{ book.title }}" />
+    </div>
+  </div>
+  
+  <div *ngIf="selectedMenu === 'add-book'">
+    <h2>Add New Book</h2>
+    <form (ngSubmit)="addBook()">
+      <input type="text" [(ngModel)]="newBookTitle" name="title" placeholder="Book Title" required />
+      
+      <!-- File input for cover image -->
+      <input type="file" (change)="onFileSelected($event)" />
+  
+      <button type="submit">Add Book</button>
+    </form>
+  </div>
+  
