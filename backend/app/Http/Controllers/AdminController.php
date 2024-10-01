@@ -21,6 +21,8 @@ class AdminController extends Controller
     }
     public function updateAuthorStatus(Request $request, $id)
     {
+        \Log::info('update user status');
+
         $author = User::findOrFail($id);
         $author->status = $request->input('status');
         $author->save();
@@ -29,13 +31,13 @@ class AdminController extends Controller
     }
     public function listBooks()
     {
-        $books = Book::all();
+        $books = Book::with('user')->get();
         return response()->json($books);
     }
     public function listBooksByAuthor($authorId)
     {
         // Fetch books where the user_id matches the provided author ID
-        $books = Book::where('user_id', $authorId)->get();
+        $books = Book::with('user')->where('user_id', $authorId)->get();
 
         if ($books->isEmpty()) {
             return response()->json(['message' => 'No books found for this author'], 404);
