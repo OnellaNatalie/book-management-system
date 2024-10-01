@@ -20,25 +20,25 @@
   </ul>
 
   <h3>Books</h3>
-  <div *ngIf="books && books.length > 0" class="row">
-    <div *ngFor="let book of books" class="col-md-4 mb-4">
-      <div class="card">
-        <img
-          [src]="'http://127.0.0.1:8000/storage/' + book.cover_image"
-          alt="{{ book.title }}"
-          class="card-img-top"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ book.title }}</h5>
-          <p class="card-text">Book ID: {{ book.id }}</p>
-          <p class="card-text">Author: {{ book.user.name }}</p>  
-          <p class="card-text">Author ID: {{ book.user_id }}</p>  
-          <p class="card-text">Created At: {{ book.created_at | date:'dd MMMM yyyy HH:mm:ss' }}</p>
-        </div>
+  <div class="row">
+  <div *ngFor="let book of books" class="col-md-4 mb-2">
+    <div class="card">
+      <img
+        *ngIf="book.cover_image"
+        [src]="'http://127.0.0.1:8000/storage/' + book.cover_image"
+        alt="{{ book.title }}"
+        class="card-img-top"
+        style="height: 200px; object-fit: cover;"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <span>BookId : {{ book.id }}</span><br/>
+        <span>Author : {{ book.user?.name }}</span><br/>
+        <span>Book Added Date : {{ book.created_at | date:'dd MMMM yyyy HH:mm:ss' }}</span>
       </div>
     </div>
   </div>
-  
+</div>
   <div *ngIf="books && books.length === 0">
     <p>No books available.</p>
   </div>
