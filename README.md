@@ -170,7 +170,7 @@ For the backend, ensure to update the following in your `.env` file:
 - `POST /register` - Register a new author
 - `POST /login` - Login and obtain an access token
 - `GET /user` - Get user information (auth required)
-- `GET /list-books` - List all books (auth required)
+- `GET /list-books` - List all books (auth not required)
 
 ### Admin
 
