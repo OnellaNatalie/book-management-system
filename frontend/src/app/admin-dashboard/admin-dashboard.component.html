@@ -1,30 +1,43 @@
-<h2>Authors</h2>
-<ul>
-    <li *ngFor="let author of authors">
-        {{ author.name }} - Status: {{ author.status }}
-    
+<div class="container mt-4">
+  <h2>Authors</h2>
+  <ul class="list-group mb-4">
+    <li *ngFor="let author of authors" class="list-group-item d-flex justify-content-between align-items-center">
+      {{ author.name }} - Status: {{ author.status }}
+      <div>
         <!-- Show 'Activate' button if the author is inactive -->
-        <button *ngIf="author.status === 'inactive'" (click)="updateAuthorStatus(author.id, 'active')">Activate</button>
-    
+        <button *ngIf="author.status === 'inactive'" class="btn btn-success btn-sm" (click)="updateAuthorStatus(author.id, 'active')">
+          Activate
+        </button>
+        
         <!-- Show 'Deactivate' button if the author is active -->
-        <button *ngIf="author.status === 'active'" (click)="updateAuthorStatus(author.id, 'inactive')">Deactivate</button>
-      </li>
-</ul>
+        <button *ngIf="author.status === 'active'" class="btn btn-danger btn-sm" (click)="updateAuthorStatus(author.id, 'inactive')">
+          Deactivate
+        </button>
+      </div>
+    </li>
+  </ul>
 
-<h2>Books</h2>
-<div *ngIf="books && books.length > 0">
-    <div *ngFor="let book of books">
-      <h3>{{ book.title }}</h3>
-      <img [src]="'http://127.0.0.1:8000/storage/' + book.cover_image" alt="{{ book.title }}" width="100" />
-      <p>Book ID: {{ book.id }}</p>
-      <p>Author: {{ book.user.name }}</p> <!-- Displaying author's name -->
-      <p>Author ID: {{ book.user_id }}</p> <!-- Displaying author's ID -->
-      <p>Created At: {{ book.created_at | date:'dd MMMM yyyy HH:mm:ss'}}</p>
+  <h2>Books</h2>
+  <div *ngIf="books && books.length > 0" class="row">
+    <div *ngFor="let book of books" class="col-md-4 mb-4">
+      <div class="card">
+        <img
+          [src]="'http://127.0.0.1:8000/storage/' + book.cover_image"
+          alt="{{ book.title }}"
+          class="card-img-top"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ book.title }}</h5>
+          <p class="card-text">Book ID: {{ book.id }}</p>
+          <p class="card-text">Author: {{ book.user.name }}</p> <!-- Displaying author's name -->
+          <p class="card-text">Author ID: {{ book.user_id }}</p> <!-- Displaying author's ID -->
+          <p class="card-text">Created At: {{ book.created_at | date:'dd MMMM yyyy HH:mm:ss' }}</p>
+        </div>
+      </div>
     </div>
   </div>
-  
   
   <div *ngIf="books && books.length === 0">
     <p>No books available.</p>
   </div>
-  
+</div>

@@ -1,18 +1,40 @@
-<h2>Books</h2>
-
-<input 
-  type="text" 
-  placeholder="Search for books..." 
-  [(ngModel)]="searchTerm"
-/>
-
-<div *ngIf="filteredBooks.length > 0">
-  <div *ngFor="let book of filteredBooks">
-    <h3>{{ book.title }}</h3>
-    <img [src]="'http://127.0.0.1:8000/storage/' + book.cover_image" alt="{{ book.title }}" width="100" />
-    <p>Book ID: {{ book.id }}</p>
-    <p>Author: {{ book.user.name }}</p>
-    <p>Author ID: {{ book.user_id }}</p>
-    <p>Created At: {{ book.created_at | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+<div class="container mt-4">
+    <h2>Books</h2>
+  
+    <!-- Search Input -->
+    <div class="mb-3">
+      <input 
+        type="text" 
+        placeholder="Search for books..." 
+        [(ngModel)]="searchTerm" 
+        class="form-control"
+      />
+    </div>
+  
+    <!-- Filtered Books Display -->
+    <div *ngIf="filteredBooks.length > 0" class="row">
+      <div *ngFor="let book of filteredBooks" class="col-md-4 mb-4">
+        <div class="card">
+          <img 
+            [src]="'http://127.0.0.1:8000/storage/' + book.cover_image" 
+            alt="{{ book.title }}" 
+            class="card-img-top" 
+            style="width: 100%; height: auto;"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <p class="card-text">Book ID: {{ book.id }}</p>
+            <p class="card-text">Author: {{ book.user.name }}</p>
+            <p class="card-text">Author ID: {{ book.user_id }}</p>
+            <p class="card-text">Created At: {{ book.created_at | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- No Books Found Message -->
+    <div *ngIf="filteredBooks.length === 0">
+      <p>No books found.</p>
+    </div>
   </div>
-</div>
+  

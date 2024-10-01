@@ -1,26 +1,63 @@
 <!-- Menu -->
-<ul>
-    <li (click)="switchMenu('list-books')">List Books</li>
-    <li (click)="switchMenu('add-book')">Add Book</li>
+<div class="container mt-4">
+  <ul class="nav nav-pills mb-3">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="selectedMenu === 'list-books'"
+        (click)="switchMenu('list-books')"
+        >List Books</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [class.active]="selectedMenu === 'add-book'"
+        (click)="switchMenu('add-book')"
+        >Add Book</a
+      >
+    </li>
   </ul>
-  
+
   <!-- Conditional content based on the selected menu -->
   <div *ngIf="selectedMenu === 'list-books'">
-    <div *ngFor="let book of books">
-        <h3>{{ book.title }}</h3>
-        <img style="width: 150px;" *ngIf="book.cover_image" [src]="'http://127.0.0.1:8000/storage/' + book.cover_image" alt="{{ book.title }}" />
+    <h2>Books List</h2>
+    <div *ngFor="let book of books" class="mb-3">
+      <h3>{{ book.title }}</h3>
+      <img
+        style="width: 150px;"
+        *ngIf="book.cover_image"
+        [src]="'http://127.0.0.1:8000/storage/' + book.cover_image"
+        alt="{{ book.title }}"
+        class="img-thumbnail"
+      />
     </div>
   </div>
-  
+
   <div *ngIf="selectedMenu === 'add-book'">
     <h2>Add New Book</h2>
-    <form (ngSubmit)="addBook()">
-      <input type="text" [(ngModel)]="newBookTitle" name="title" placeholder="Book Title" required />
-      
+    <form (ngSubmit)="addBook()" class="mb-4">
+      <div class="mb-3">
+        <input
+          type="text"
+          [(ngModel)]="newBookTitle"
+          name="title"
+          placeholder="Book Title"
+          required
+          class="form-control"
+        />
+      </div>
+
       <!-- File input for cover image -->
-      <input type="file" (change)="onFileSelected($event)" />
-  
-      <button type="submit">Add Book</button>
+      <div class="mb-3">
+        <input
+          type="file"
+          (change)="onFileSelected($event)"
+          class="form-control"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add Book</button>
     </form>
   </div>
-  
+</div>
