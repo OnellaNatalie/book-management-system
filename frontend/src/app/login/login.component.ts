@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
   password: string = '';  
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(form: any) {
     const { email, password } = form.value;
@@ -26,6 +27,13 @@ export class LoginComponent {
             console.log('Login successful', response);
             localStorage.setItem('token', response.token); 
             localStorage.setItem('user', JSON.stringify({ role: response.role }));
+            if (response.role === 'author') {
+              this.router.navigate(['/author-dashboard']); 
+            } else if (response.role === 'admin') {
+              this.router.navigate(['/admin-dashboard']); 
+            } else {
+              this.router.navigate(['/']); 
+            }
       
         },
         (error) => {
