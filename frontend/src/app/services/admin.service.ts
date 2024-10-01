@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class AdminService {
-  private apiUrl = 'http://127.0.0.1:8000/api/admin';  
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -16,7 +16,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.apiUrl}/authors`, { headers });
+    return this.http.get(`${this.apiUrl}/admin/authors`, { headers });
   }
  
   updateAuthorStatus(authorId: number, status: string): Observable<any> {
@@ -25,7 +25,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.patch(`${this.apiUrl}/authors/status/${authorId}`,{ status },{ headers});
+    return this.http.patch(`${this.apiUrl}/admin/authors/status/${authorId}`,{ status },{ headers});
   }
 
   
@@ -34,7 +34,7 @@ export class AdminService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.apiUrl}/list-books`,{ headers });
+    return this.http.get(`${this.apiUrl}/admin/list-books`,{ headers });
   }
 
  
@@ -43,6 +43,6 @@ export class AdminService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    return this.http.get(`${this.apiUrl}/authors/books/${authorId}`, { headers });
+    return this.http.get(`${this.apiUrl}/admin/authors/books/${authorId}`, { headers });
   }
 }

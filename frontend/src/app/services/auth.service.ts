@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://127.0.0.1:8000/api'; // Replace with your actual API URL
+  private apiUrl = environment.apiUrl; 
   private auth: boolean = false;
   private bearerToken: string = '0';
   constructor(private http: HttpClient) {}
