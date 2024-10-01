@@ -55,4 +55,10 @@ class AuthController extends Controller
         \Log::info('getUser method was called.');
         return response()->json($request->user());
     }
+    public function logout(Request $request)
+    {
+        Auth::guard('api')->user()->token()->revoke();
+
+        return response()->json(['message' => 'User logged out successfully.']);
+    }
 }
