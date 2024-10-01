@@ -24,19 +24,27 @@ class AuthorController extends Controller
 
     public function addBook(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'cover_image' => 'nullable|string|max:255'
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:255',
+                'cover_image' => 'nullable|file|mimes:jpeg,png,jpg|max:2048'
+            ]);
 
-        $book = new Book();
-        $book->title = $validatedData['title'];
-        $book->cover_image = $validatedData['cover_image'];
-        $book->user_id = Auth::id(); 
-        $book->save();
+            $book = new Book();
+            $book->title = $validatedData['title'];
+            if ($request->hasFile('cover_image')) {
+                $path = $request->file('cover_image')->store('cover_images'); // Store the uploaded image
+                $book->cover_image = $path;
+            }
+            $book->user_id = Auth::id();
+            $book->save();
 
-        return response()->json(['message' => 'Book created successfully.', 'book' => $book], 201);
+            return response()->json(['message' => 'Book created successfully.', 'book' => $book], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
+
    
 
 }
