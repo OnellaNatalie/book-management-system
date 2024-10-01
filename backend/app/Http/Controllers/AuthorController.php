@@ -33,8 +33,9 @@ class AuthorController extends Controller
             $book = new Book();
             $book->title = $validatedData['title'];
             if ($request->hasFile('cover_image')) {
-                $path = $request->file('cover_image')->store('cover_images'); // Store the uploaded image
-                $book->cover_image = $path;
+                $image = $request->file('cover_image');
+                $imagePath = $image->store('images', 'public'); // Store in public/images
+                $book->cover_image = $imagePath; // Save the path in the database
             }
             $book->user_id = Auth::id();
             $book->save();
