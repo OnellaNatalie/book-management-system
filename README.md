@@ -163,22 +163,26 @@ For the backend, ensure to update the following in your `.env` file:
 
 ## API Endpoints
 
+## API Endpoints
+
 ### Authentication
 
-- `POST /api/register` - Register a new author
-- `POST /api/login` - Login and obtain an access token
+- `POST /register` - Register a new author
+- `POST /login` - Login and obtain an access token
+- `GET /user` - Get user information (auth required)
+- `GET /list-books` - List all books (auth required)
 
-### Authors
+### Admin
 
-- `GET /api/authors` - List all authors (admin only)
-- `PUT /api/authors/{id}/status` - Update author status (admin only)
+- `GET /admin/authors` - List all authors (admin role required)
+- `PATCH /admin/authors/status/{id}` - Update author status (admin role required)
+- `GET /admin/list-books` - List all books (admin role required)
+- `GET /admin/authors/books/{authorId}` - List books by a specific author (admin role required)
 
-### Books
+### Author
 
-- `GET /api/books` - List all books (public)
-- `POST /api/books` - Add a new book (author only)
-- `PUT /api/books/{id}` - Update book details (author only)
-- `DELETE /api/books/{id}` - Delete a book (author only)
+- `GET /author/list-books` - List books by the authenticated author (author role required)
+- `POST /author/add-book` - Add a new book (author role required)
 
 ## Project Structure
 
