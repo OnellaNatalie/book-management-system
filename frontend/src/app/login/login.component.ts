@@ -27,6 +27,7 @@ export class LoginComponent {
             console.log('Login successful', response);
             localStorage.setItem('token', response.token); 
             localStorage.setItem('user', JSON.stringify({ role: response.role }));
+            this.authService.setLoggedIn(true);
             if (response.role === 'author') {
               this.router.navigate(['/author-dashboard']); 
             } else if (response.role === 'admin') {
