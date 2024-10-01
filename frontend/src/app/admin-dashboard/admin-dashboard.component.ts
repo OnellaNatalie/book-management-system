@@ -16,6 +16,8 @@ export class AdminDashboardComponent implements OnInit {
   authors: any[] = [];
   books: any[] = [];
   selectedAuthorId: number | null = null;
+  successMessage: any;
+  errorMessage: any;
 
   constructor(private adminService: AdminService) {}
 
@@ -37,17 +39,26 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   updateAuthorStatus(authorId: number, status: string) {
-    console.log(authorId,status);
+    console.log(authorId, status);
+    
     this.adminService.updateAuthorStatus(authorId, status).subscribe(
       (response) => {
-        // console.log('Author status updated:', response);
+
+        this.successMessage = `Author status updated to ${status} successfully!`;
+
         this.getAuthors();
+        setTimeout(() => {
+          this.successMessage = null;
+        }, 3000); 
       },
       (error) => {
-        // console.error('Error updating author status:', error);
+        // Handle error
+        console.error('Error updating author status:', error);
+        this.errorMessage = 'Failed to update author status. Please try again.';
       }
     );
   }
+  
 
   getBooks() {
     this.adminService.listBooks().subscribe(
