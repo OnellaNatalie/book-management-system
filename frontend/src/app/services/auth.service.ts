@@ -43,7 +43,7 @@ export class AuthService {
   getUser(): Observable<any> {
     return this.http.get(`${this.apiUrl}/user`).pipe(
       tap(user => {
-        console.log('Fetched user:', user);
+        // console.log('Fetched user:', user);
       })
     );
   }

@@ -20,7 +20,7 @@ export class AdminService {
   }
  
   updateAuthorStatus(authorId: number, status: string): Observable<any> {
-    console.log(authorId,status)
+    // console.log(authorId,status)
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`

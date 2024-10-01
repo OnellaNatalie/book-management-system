@@ -32,11 +32,11 @@ export class RegisterComponent {
 
     this.authService.register({ name, email, password, password_confirmation }).subscribe(
       (response) => {
-        console.log('User registered successfully', response);
+        // console.log('User registered successfully', response);
         this.router.navigate(['/login']);
       },
       (error) => {
-        console.error('Registration error', error);
+        // console.error('Registration error', error);
         this.errorMessage = error.error?.message || 'Registration failed. Please try again.';
       }
     );

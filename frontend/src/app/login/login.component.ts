@@ -24,10 +24,10 @@ export class LoginComponent {
 
     this.authService.login(email, password).subscribe(
         (response) => {
-            console.log('Login successful', response);
+            // console.log('Login successful', response);
             localStorage.setItem('token', response.token); 
             localStorage.setItem('user', JSON.stringify({ role: response.role, user: response.user }));
-            console.log(localStorage);
+            // console.log(localStorage);
             this.authService.setAuth(true);
             this.authService.setBearerToken(response.token);
             this.authService.setUser(response.user);

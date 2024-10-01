@@ -31,7 +31,7 @@ export class AdminDashboardComponent implements OnInit {
         console.log(this.authors);
       },
       (error) => {
-        console.error('Error fetching authors:', error);
+        // console.error('Error fetching authors:', error);
       }
     );
   }
@@ -40,11 +40,11 @@ export class AdminDashboardComponent implements OnInit {
     console.log(authorId,status);
     this.adminService.updateAuthorStatus(authorId, status).subscribe(
       (response) => {
-        console.log('Author status updated:', response);
+        // console.log('Author status updated:', response);
         this.getAuthors();
       },
       (error) => {
-        console.error('Error updating author status:', error);
+        // console.error('Error updating author status:', error);
       }
     );
   }
@@ -53,10 +53,10 @@ export class AdminDashboardComponent implements OnInit {
     this.adminService.listBooks().subscribe(
       (data) => {
         this.books = data;
-        console.log("list- books",this.books);
+        // console.log("list- books",this.books);
       },
       (error) => {
-        console.error('Error fetching books:', error);
+        // console.error('Error fetching books:', error);
       }
     );
   }
@@ -67,7 +67,7 @@ export class AdminDashboardComponent implements OnInit {
         this.books = data;
       },
       (error) => {
-        console.error('Error fetching books by author:', error);
+        // console.error('Error fetching books by author:', error);
       }
     );
   }

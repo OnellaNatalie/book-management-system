@@ -23,10 +23,10 @@ export class HomeComponent {
     this.authService.listBooks().subscribe(
       (data) => {
         this.books = data;
-        console.log("list- books",this.books);
+        // console.log("list- books",this.books);
       },
       (error) => {
-        console.error('Error fetching books:', error);
+        // console.error('Error fetching books:', error);
       }
     );
   }

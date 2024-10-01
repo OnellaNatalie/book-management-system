@@ -30,7 +30,7 @@ export class AuthorDashboardComponent implements OnInit {
         this.books = data;
       },
       (error) => {
-        console.error('Failed to fetch books', error);
+        // console.error('Failed to fetch books', error);
       }
     );
   }
@@ -41,7 +41,7 @@ export class AuthorDashboardComponent implements OnInit {
 
   addBook(): void {
     if (!this.newBookTitle || !this.selectedFile) {
-      console.error('Book title or image file is missing.');
+      // console.error('Book title or image file is missing.');
       return;
     }
 
@@ -52,11 +52,11 @@ export class AuthorDashboardComponent implements OnInit {
 
     this.authorService.addBook(formData).subscribe(
       (response) => {
-        console.log('Book added successfully', response);
+        // console.log('Book added successfully', response);
         this.getBooks();  
       },
       (error) => {
-        console.error('Failed to add book', error);
+        // console.error('Failed to add book', error);
       }
     );
   }
