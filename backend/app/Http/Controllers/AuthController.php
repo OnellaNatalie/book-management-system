@@ -42,9 +42,9 @@ class AuthController extends Controller
                 return response()->json(['error' => 'Your account is deactivated. Please contact the administrator.'], 403);
             }
             $token = $user->createToken('Personal Access Token')->accessToken;
-            
+            $role = $user->role;
 
-            return response()->json(['token' => $token], 200);
+            return response()->json(['token' => $token,'role' => $role], 200);
         }
 
         return response()->json(['error' => 'Unauthorized'], 401);
