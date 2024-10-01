@@ -223,8 +223,4 @@ book-management-system-frontend/
 - Admins can log in to manage author status and view books.
 
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ---
