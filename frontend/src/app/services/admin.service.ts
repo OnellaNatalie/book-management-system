@@ -37,12 +37,4 @@ export class AdminService {
     return this.http.get(`${this.apiUrl}/admin/list-books`,{ headers });
   }
 
- 
-  listBooksByAuthor(authorId: number): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
-    return this.http.get(`${this.apiUrl}/admin/authors/books/${authorId}`, { headers });
-  }
 }

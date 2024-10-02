@@ -72,14 +72,4 @@ export class AdminDashboardComponent implements OnInit {
     );
   }
 
-  getBooksByAuthor(authorId: number) {
-    this.adminService.listBooksByAuthor(authorId).subscribe(
-      (data) => {
-        this.books = data;
-      },
-      (error) => {
-        // console.error('Error fetching books by author:', error);
-      }
-    );
-  }
 }
