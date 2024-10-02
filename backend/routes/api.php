@@ -31,7 +31,6 @@ Route::middleware(['auth:api', 'role:admin'])->group(function () {
     Route::get('/admin/authors', [AdminController::class, 'listAuthors']);
     Route::patch('/admin/authors/status/{id}', [AdminController::class, 'updateAuthorStatus']);
     Route::get('/admin/list-books', [AdminController::class, 'listBooks']);
-    Route::get('/admin/authors/books/{authorId}', [AdminController::class, 'listBooksByAuthor']);
 });
 
 Route::middleware(['auth:api', 'role:author'])->group(function () {

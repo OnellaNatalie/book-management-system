@@ -14,11 +14,15 @@ class AdminController extends Controller
         $this->middleware('auth:api');
         $this->middleware('admin');
     }
+
+    //Get authors
     public function listAuthors()
     {
         $authors = User::where('role', 'author')->get();
         return response()->json($authors);
     }
+
+    //Update the author status to active or inactive
     public function updateAuthorStatus(Request $request, $id)
     {
         // \Log::info('update user status');
@@ -29,20 +33,12 @@ class AdminController extends Controller
 
         return response()->json(['message' => 'Author status updated successfully.']);
     }
+
+    //Get books with the user 
     public function listBooks()
     {
         $books = Book::with('user')->get();
         return response()->json($books);
     }
-    public function listBooksByAuthor($authorId)
-    {
-        // Fetch books where the user_id matches the provided author ID
-        $books = Book::with('user')->where('user_id', $authorId)->get();
-
-        if ($books->isEmpty()) {
-            return response()->json(['message' => 'No books found for this author'], 404);
-        }
-
-        return response()->json($books);
-    }
+   
 }
